@@ -53,6 +53,12 @@ export default {
           image: {
             url: "https://cdn.pixabay.com/photo/2020/04/26/18/16/floral-5096532_960_720.jpg",
           },
+          tags: [
+            {
+              name: "heart-warming",
+              id: 66,
+            },
+          ],
         },
       ],
     });

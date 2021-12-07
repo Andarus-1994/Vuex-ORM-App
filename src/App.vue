@@ -3,6 +3,7 @@
     <!--
     <ManyToMany />
     -->
+    <ManyToManyPolymorphic />
     <OneToManyPolymorphic />
     <OnetoOnePolymorphic />
 
@@ -29,6 +30,7 @@
 import User from "./classes/User";
 import OnetoOnePolymorphic from "./components/OneToOnePolymorphic.vue";
 import OneToManyPolymorphic from "./components/OneToManyPolymorphic.vue";
+import ManyToManyPolymorphic from "./components/ManyToManyPolymorphic.vue";
 export default {
   name: "App",
   data() {
@@ -39,6 +41,7 @@ export default {
   components: {
     OnetoOnePolymorphic,
     OneToManyPolymorphic,
+    ManyToManyPolymorphic,
   },
   computed: {
     users() {

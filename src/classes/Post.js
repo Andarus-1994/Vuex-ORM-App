@@ -1,6 +1,8 @@
 import { Model } from "@vuex-orm/core";
 import Image from "./Image";
 import Comment from "./Comment";
+import Taggables from "./Taggable";
+import Tag from "./Tag";
 export default class Post extends Model {
   static entity = "posts";
 
@@ -11,6 +13,13 @@ export default class Post extends Model {
       image: this.morphOne(Image, "imageable_id", "imageable_type"),
       // relationship
       comments: this.morphMany(Comment, "commentable_id", "commentable_type"),
+      tags: this.morphToMany(
+        Tag,
+        Taggables,
+        "tag_id",
+        "taggable_id",
+        "taggable_type"
+      ),
     };
   }
 }

@@ -99,6 +99,16 @@ export default {
               body: "Can't belive this !",
             },
           ],
+          tags: [
+            {
+              name: "funny",
+              id: 49,
+            },
+            {
+              name: "WoW!",
+              id: 61,
+            },
+          ],
         },
       ],
     });

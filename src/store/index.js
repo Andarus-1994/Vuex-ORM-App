@@ -11,6 +11,8 @@ import Post from "../classes/Post";
 import Image from "../classes/Image";
 import Video from "../classes/Video";
 import Comment from "../classes/Comment";
+import Tag from "../classes/Tag";
+import Taggables from "../classes/Taggable";
 // Load Vuex
 Vue.use(Vuex);
 
@@ -26,6 +28,8 @@ database.register(Image);
 database.register(Post);
 database.register(Video);
 database.register(Comment);
+database.register(Tag);
+database.register(Taggables);
 // Create store jhere
 
 export default new Vuex.Store({
