@@ -6,7 +6,7 @@ export default class Item extends Model {
 
   static fields() {
     return {
-      id: this.increment(null),
+      id: this.increment(),
       body: this.attr(""),
       list_id: this.attr(null),
       // relationship

@@ -7,6 +7,8 @@ import User from "../classes/User";
 import List from "../classes/List";
 import RoleUser from "../classes/RoleUser";
 import Role from "../classes/Roles";
+import Post from "../classes/Post";
+import Image from "../classes/Image";
 // Load Vuex
 Vue.use(Vuex);
 
@@ -18,6 +20,8 @@ database.register(User);
 database.register(List);
 database.register(RoleUser);
 database.register(Role);
+database.register(Image);
+database.register(Post);
 // Create store jhere
 
 export default new Vuex.Store({
