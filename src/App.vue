@@ -3,7 +3,9 @@
     <!--
     <ManyToMany />
     -->
+    <OneToManyPolymorphic />
     <OnetoOnePolymorphic />
+
     <!--
     <div class="leftSide">
       <div v-for="user in users" :key="user.id">
@@ -26,7 +28,7 @@
 <script>
 import User from "./classes/User";
 import OnetoOnePolymorphic from "./components/OneToOnePolymorphic.vue";
-
+import OneToManyPolymorphic from "./components/OneToManyPolymorphic.vue";
 export default {
   name: "App",
   data() {
@@ -36,6 +38,7 @@ export default {
   },
   components: {
     OnetoOnePolymorphic,
+    OneToManyPolymorphic,
   },
   computed: {
     users() {
