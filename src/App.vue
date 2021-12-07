@@ -27,6 +27,7 @@
 <script>
 import Item from "./classes/item";
 import User from "./classes/User";
+import List from "./classes/List";
 
 export default {
   name: "App",
@@ -54,77 +55,90 @@ export default {
     console.log(this.users);
   },
   beforeMount() {
-    User.insert({
+    List.insert({
       data: [
         {
-          id: 27,
-          name: "Andrei",
-          email: "Andrei@gmail.com",
-          profile: {
-            id: 23,
-            bio: "Web Developer",
-            life_goal: "Testing this life goal",
-          },
-
-          lists: [
-            {
-              id: 500,
-              title: "shopping",
-              items: [
-                {
-                  id: 5232,
-                  body: "Bananas",
-                },
-                {
-                  id: 4788,
-                  body: "Coconut",
-                },
-              ],
-            },
-            {
-              id: 422,
-              title: "Life friends",
-              items: [
-                {
-                  id: 344,
-                  body: "Alex",
-                },
-                {
-                  id: 256,
-                  body: "Daniel",
-                },
-              ],
-            },
-            {
-              id: 234,
-              title: "Hacking list",
-              items: [
-                {
-                  id: 344,
-                  body: "Google",
-                },
-              ],
-            },
-          ],
+          id: 77,
+          title: "Gym",
+          user_id: 27,
         },
         {
-          id: 29,
-          name: "Alex",
-          email: "alex@gmail.com",
-          profile: {
-            id: 43,
-            bio: "Web Developer 22",
-            life_goal: "Testing this life goal 2",
-          },
-          lists: [
-            {
-              id: 423,
-              title: "shopping",
-            },
-          ],
+          id: 87,
+          title: "Food",
         },
       ],
-    });
+    }),
+      User.insert({
+        data: [
+          {
+            id: 27,
+            name: "Andrei",
+            email: "Andrei@gmail.com",
+            profile: {
+              id: 23,
+              bio: "Web Developer",
+              life_goal: "Testing this life goal",
+            },
+
+            lists: [
+              {
+                id: 500,
+                title: "shopping",
+                items: [
+                  {
+                    id: 5232,
+                    body: "Bananas",
+                  },
+                  {
+                    id: 4788,
+                    body: "Coconut",
+                  },
+                ],
+              },
+              {
+                id: 422,
+                title: "Life friends",
+                items: [
+                  {
+                    id: 344,
+                    body: "Alex",
+                  },
+                  {
+                    id: 256,
+                    body: "Daniel",
+                  },
+                ],
+              },
+              {
+                id: 234,
+                title: "Hacking list",
+                items: [
+                  {
+                    id: 344,
+                    body: "Google",
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            id: 29,
+            name: "Alex",
+            email: "alex@gmail.com",
+            profile: {
+              id: 43,
+              bio: "Web Developer 22",
+              life_goal: "Testing this life goal 2",
+            },
+            lists: [
+              {
+                id: 423,
+                title: "shopping",
+              },
+            ],
+          },
+        ],
+      });
   },
 };
 </script>

@@ -10,11 +10,12 @@ export default class User extends Model {
       id: this.increment(),
       name: this.attr(""),
       email: this.attr(""),
+      lists_ids: this.attr([]),
 
       //relationships
 
       profile: this.hasOne(Profile, "user_id"),
-      lists: this.hasMany(List, "user_id"),
+      lists: this.hasManyBy(List, "lists_ids"),
     };
   }
 }
