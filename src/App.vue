@@ -1,144 +1,105 @@
 <template>
   <div id="app">
-    <div v-for="user in users" :key="user.id">
-      <h3>{{ user.name }}</h3>
-      <p>{{ user.profile.life_goal }}</p>
-      <h4>List here:</h4>
+    <div class="leftSide">
+      <div v-for="user in users" :key="user.id">
+        <h3>{{ user.name }}</h3>
+        <p>{{ user.profile.life_goal }}</p>
+        <List v-for="list in user.lists" :key="list.id" :list="list" />
+        <input v-model="form.title" />
+        <button v-on:click="addList(user.id)">Add List for user</button>
+      </div>
+    </div>
+    <div class="rightSide">
       <ul>
-        <li v-for="list in user.lists" :key="list.id">
-          {{ list.title }}
-          <ul>
-            <li v-for="item in list.items" :key="item.id">
-              {{ item.body }}
-            </li>
-          </ul>
-        </li>
+        <li v-for="item in items" :key="item.id">{{ item.body }}</li>
       </ul>
     </div>
-    <h3>Vuex-App</h3>
-    <input v-model="form.body" />
-    <button @click="addItem">Add Item</button>
-    <li v-for="item in items" :key="item.$id">
-      {{ item.body }}
-    </li>
   </div>
 </template>
 
 <script>
-import Item from "./classes/item";
-import User from "./classes/User";
 import List from "./classes/List";
-
+import User from "./classes/User";
+import ListComponent from "./components/List.vue";
 export default {
   name: "App",
   data() {
     return {
-      form: { body: "" },
+      form: { title: "", user_id: null },
     };
   },
-  components: {},
+  components: {
+    List: ListComponent,
+  },
   computed: {
-    items() {
-      return Item.all();
-    },
-
     users() {
       return User.query().with("profile").with("lists.items").get();
     },
+
+    items() {
+      return User.query().with("items").find(27).items;
+    },
   },
   methods: {
-    addItem: function () {
-      Item.insert({ data: this.form });
+    addList: function (id) {
+      this.form.user_id = id;
+      List.insert({ data: this.form });
     },
   },
   mounted() {
     console.log(this.users);
   },
   beforeMount() {
-    List.insert({
+    User.insert({
       data: [
         {
-          id: 77,
-          title: "Gym",
-          user_id: 27,
+          id: 27,
+          name: "Andrei",
+          email: "Andrei@gmail.com",
+          profile: {
+            id: 23,
+            bio: "Web Developer",
+            life_goal: "Testing this life goal",
+          },
+          lists: [
+            {
+              title: "gym",
+              id: 44,
+              items: [
+                {
+                  id: 89,
+                  body: "30kg weight",
+                },
+                {
+                  id: 829,
+                  body: "50kg weight",
+                },
+              ],
+            },
+            {
+              title: "Shopping",
+              id: 444,
+              items: [
+                {
+                  body: "orange",
+                  id: 99,
+                },
+              ],
+            },
+          ],
         },
         {
-          id: 87,
-          title: "Food",
+          id: 29,
+          name: "Alex",
+          email: "alex@gmail.com",
+          profile: {
+            id: 43,
+            bio: "Web Developer 22",
+            life_goal: "Testing this life goal 2",
+          },
         },
       ],
-    }),
-      User.insert({
-        data: [
-          {
-            id: 27,
-            name: "Andrei",
-            email: "Andrei@gmail.com",
-            profile: {
-              id: 23,
-              bio: "Web Developer",
-              life_goal: "Testing this life goal",
-            },
-
-            lists: [
-              {
-                id: 500,
-                title: "shopping",
-                items: [
-                  {
-                    id: 5232,
-                    body: "Bananas",
-                  },
-                  {
-                    id: 4788,
-                    body: "Coconut",
-                  },
-                ],
-              },
-              {
-                id: 422,
-                title: "Life friends",
-                items: [
-                  {
-                    id: 344,
-                    body: "Alex",
-                  },
-                  {
-                    id: 256,
-                    body: "Daniel",
-                  },
-                ],
-              },
-              {
-                id: 234,
-                title: "Hacking list",
-                items: [
-                  {
-                    id: 344,
-                    body: "Google",
-                  },
-                ],
-              },
-            ],
-          },
-          {
-            id: 29,
-            name: "Alex",
-            email: "alex@gmail.com",
-            profile: {
-              id: 43,
-              bio: "Web Developer 22",
-              life_goal: "Testing this life goal 2",
-            },
-            lists: [
-              {
-                id: 423,
-                title: "shopping",
-              },
-            ],
-          },
-        ],
-      });
+    });
   },
 };
 </script>
@@ -156,5 +117,13 @@ body {
   padding: 0 50px;
   color: #353946;
   margin-top: 60px;
+}
+.leftSide {
+  float: left;
+  width: 50%;
+}
+.rightSide {
+  float: right;
+  width: 50%;
 }
 </style>
