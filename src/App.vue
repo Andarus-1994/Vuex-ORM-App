@@ -1,5 +1,7 @@
 <template>
   <div id="app">
+    <ManyToMany />
+    <!--
     <div class="leftSide">
       <div v-for="user in users" :key="user.id">
         <h3>{{ user.name }}</h3>
@@ -14,13 +16,14 @@
         <li v-for="item in items" :key="item.id">{{ item.body }}</li>
       </ul>
     </div>
+    -->
   </div>
 </template>
 
 <script>
-import List from "./classes/List";
 import User from "./classes/User";
-import ListComponent from "./components/List.vue";
+
+import ManyToMany from "./components/ManyToMany.vue";
 export default {
   name: "App",
   data() {
@@ -29,7 +32,7 @@ export default {
     };
   },
   components: {
-    List: ListComponent,
+    ManyToMany,
   },
   computed: {
     users() {
@@ -40,12 +43,7 @@ export default {
       return User.query().with("items").find(27).items;
     },
   },
-  methods: {
-    addList: function (id) {
-      this.form.user_id = id;
-      List.insert({ data: this.form });
-    },
-  },
+  methods: {},
   mounted() {
     console.log(this.users);
   },
@@ -87,16 +85,6 @@ export default {
               ],
             },
           ],
-        },
-        {
-          id: 29,
-          name: "Alex",
-          email: "alex@gmail.com",
-          profile: {
-            id: 43,
-            bio: "Web Developer 22",
-            life_goal: "Testing this life goal 2",
-          },
         },
       ],
     });
