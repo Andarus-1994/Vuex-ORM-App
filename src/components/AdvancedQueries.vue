@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import User from "../classes/User";
+import { User } from "../classes/UserHierarchy";
 export default {
   name: "AdvancedQueries",
   data() {
@@ -59,5 +59,15 @@ export default {
 h2 {
   font-size: 39px;
   color: rgb(245, 245, 245);
+}
+button {
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.712);
+  background: rgb(0, 140, 255);
+  border-radius: 2px;
+  border: none;
+  padding: 5px 18px;
+  min-width: 99px;
+  margin: 0 5px;
 }
 </style>

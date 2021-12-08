@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import User from "../classes/User";
+import { User } from "../classes/UserHierarchy";
 export default {
   name: "AccesorsMutators",
   mounted() {

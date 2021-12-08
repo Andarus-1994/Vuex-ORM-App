@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import User from "../classes/User";
+import { User } from "../classes/UserHierarchy";
 import Image from "../classes/Image";
 import Post from "../classes/Post";
 

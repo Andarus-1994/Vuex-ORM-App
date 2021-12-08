@@ -19,7 +19,7 @@
 
 <script>
 import Role from "../classes/Roles";
-import User from "../classes/User";
+import { User } from "../classes/UserHierarchy";
 export default {
   name: "ManyToMany",
   mounted() {

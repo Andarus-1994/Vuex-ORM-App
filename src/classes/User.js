@@ -5,13 +5,24 @@ import Profile from "./Profile";
 import Role from "./Roles";
 import RoleUser from "./RoleUser";
 import Image from "./Image";
+import Post from "./Post";
 import moment from "moment";
+import Comment from "./Comment";
+import { Admin, Publisher, SuperAdmin } from "./UserHierarchy";
 
-export default class User extends Model {
+export class User extends Model {
   static entity = "users";
 
   get full_name() {
     return this.first_name + " " + this.last_name;
+  }
+
+  static types() {
+    return {
+      ADMIN: Admin,
+      PUBLISHER: Publisher,
+      SUPER_ADMIN: SuperAdmin,
+    };
   }
 
   static mutators() {
@@ -26,8 +37,17 @@ export default class User extends Model {
     };
   }
 
+  post() {
+    console.log("Make a post");
+  }
+
+  login() {
+    console.log("user loggin");
+  }
+
   static fields() {
     return {
+      type: this.attr("USER"),
       id: this.increment(),
       name: this.attr(""),
       email: this.attr(""),
@@ -35,8 +55,10 @@ export default class User extends Model {
       last_name: this.attr(""),
       date_born: this.attr(null),
       age: this.attr(null),
-      //relationships
 
+      //relationships
+      posts: this.hasMany(Post, "user_id"),
+      comments: this.hasMany(Comment, "user_id"),
       profile: this.hasOne(Profile, "user_id"),
       lists: this.hasMany(List, "user_id"),
       items: this.hasManyThrough(Item, List, "user_id", "list_id"),

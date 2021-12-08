@@ -3,6 +3,8 @@
     <!--
     <ManyToMany />
     -->
+    <SingleTableInheritance />
+    <AdvancedRelationshipQueries />
     <AdvancedQueries />
     <AccessorsAndMutators />
     <ManyToManyPolymorphic />
@@ -29,12 +31,14 @@
 </template>
 
 <script>
-import User from "./classes/User";
+import { User } from "./classes/UserHierarchy";
+import SingleTableInheritance from "./components/SingleTableInheritance.vue";
 import OnetoOnePolymorphic from "./components/OneToOnePolymorphic.vue";
 import OneToManyPolymorphic from "./components/OneToManyPolymorphic.vue";
 import ManyToManyPolymorphic from "./components/ManyToManyPolymorphic.vue";
 import AccessorsAndMutators from "./components/AccessorsAndMutators.vue";
 import AdvancedQueries from "./components/AdvancedQueries.vue";
+import AdvancedRelationshipQueries from "./components/AdvancedRelationshipQueries.vue";
 export default {
   name: "App",
   data() {
@@ -48,6 +52,8 @@ export default {
     ManyToManyPolymorphic,
     AccessorsAndMutators,
     AdvancedQueries,
+    AdvancedRelationshipQueries,
+    SingleTableInheritance,
   },
   computed: {
     users() {
