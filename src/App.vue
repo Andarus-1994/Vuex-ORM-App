@@ -3,6 +3,8 @@
     <!--
     <ManyToMany />
     -->
+    <AdvancedQueries />
+    <AccessorsAndMutators />
     <ManyToManyPolymorphic />
     <OneToManyPolymorphic />
     <OnetoOnePolymorphic />
@@ -31,6 +33,8 @@ import User from "./classes/User";
 import OnetoOnePolymorphic from "./components/OneToOnePolymorphic.vue";
 import OneToManyPolymorphic from "./components/OneToManyPolymorphic.vue";
 import ManyToManyPolymorphic from "./components/ManyToManyPolymorphic.vue";
+import AccessorsAndMutators from "./components/AccessorsAndMutators.vue";
+import AdvancedQueries from "./components/AdvancedQueries.vue";
 export default {
   name: "App",
   data() {
@@ -42,6 +46,8 @@ export default {
     OnetoOnePolymorphic,
     OneToManyPolymorphic,
     ManyToManyPolymorphic,
+    AccessorsAndMutators,
+    AdvancedQueries,
   },
   computed: {
     users() {
