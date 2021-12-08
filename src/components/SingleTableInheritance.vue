@@ -7,6 +7,8 @@
       :columnDefs="columnDefs"
       :rowData="rowData"
       colResizeDefault="shift"
+      :pagination="true"
+      :paginationAutoPageSize="true"
     />
     <h2>Single table inheritance</h2>
     <div class="users" v-for="user in users" :key="user.id">
