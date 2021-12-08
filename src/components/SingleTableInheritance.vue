@@ -6,6 +6,7 @@
       class="ag-theme-alpine"
       :columnDefs="columnDefs"
       :rowData="rowData"
+      :defaultColDef="defaultColDef"
       colResizeDefault="shift"
       :pagination="true"
       :paginationAutoPageSize="true"
@@ -48,6 +49,12 @@ export default {
     return {
       columnDefs: [],
       rowData: [],
+      defaultColDef: {
+        flex: 1,
+        minWidth: 110,
+        editable: true,
+        resizable: true,
+      },
     };
   },
   beforeMount() {},
