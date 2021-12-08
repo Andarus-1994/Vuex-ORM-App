@@ -47,8 +47,8 @@ export class User extends Model {
 
   static fields() {
     return {
-      type: this.attr("USER"),
       id: this.increment(),
+      type: this.attr("USER"),
       name: this.attr(""),
       email: this.attr(""),
       first_name: this.attr(""),

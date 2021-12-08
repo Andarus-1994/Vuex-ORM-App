@@ -1,8 +1,18 @@
 <template>
   <div class="SingleTable">
+    <h2>AG-Grid Vue</h2>
+    <AgGridVue
+      style="width: 100%; height: 500px"
+      class="ag-theme-alpine"
+      :columnDefs="columnDefs"
+      :rowData="rowData"
+      colResizeDefault="shift"
+    />
     <h2>Single table inheritance</h2>
     <div class="users" v-for="user in users" :key="user.id">
-      <h4>{{ user.first_name }}</h4>
+      <h4>
+        {{ user.first_name }}
+      </h4>
     </div>
     <h2>Publishers</h2>
     <div class="users" v-for="publisher in publishers" :key="publisher.id">
@@ -25,15 +35,26 @@
 
 <script>
 //import Publisher from "../classes/Publisher";
+import { AgGridVue } from "ag-grid-vue";
 import { Admin, Publisher, SuperAdmin, User } from "../classes/UserHierarchy";
 export default {
   name: "SingleTable",
-  mounted() {
-    User.insert({
+  components: {
+    AgGridVue,
+  },
+  data() {
+    return {
+      columnDefs: [],
+      rowData: [],
+    };
+  },
+  beforeMount() {},
+  created() {
+    User.insertOrUpdate({
       data: [
         {
           type: "PUBLISHER",
-          id: 1,
+          id: 5,
           first_name: "Andarus",
         },
         {
@@ -48,7 +69,21 @@ export default {
         },
       ],
     });
+  },
+
+  mounted() {
     User.find(67).deleteServer();
+    for (var i = 0; i < Object.keys(this.users[0]).length; i++) {
+      this.columnDefs.push({
+        headerName: Object.keys(this.users[0])[i].toUpperCase(),
+        field: Object.keys(this.users[0])[i],
+      });
+    }
+    this.columnDefs = this.columnDefs.filter(
+      (column) => column.headerName !== "$ID"
+    );
+    console.log(this.columnDefs);
+    this.rowData = this.users;
   },
   computed: {
     users() {
@@ -67,7 +102,9 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+@import "~ag-grid-community/dist/styles/ag-grid.css";
+@import "~ag-grid-community/dist/styles/ag-theme-alpine.css";
 .SingleTable {
   padding: 10px;
   background: rosybrown;
@@ -75,5 +112,9 @@ export default {
 }
 h2 {
   font-style: 44px;
+}
+.ag-theme-alpine .ag-header {
+  background: rgb(104, 104, 116);
+  color: white !important;
 }
 </style>
