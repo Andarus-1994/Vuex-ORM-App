@@ -6,6 +6,8 @@
       class="ag-theme-alpine"
       :columnDefs="columnDefs"
       :rowData="rowData"
+      :rowClass="rowClass"
+      :getRowClass="grayClass"
       :defaultColDef="defaultColDef"
       colResizeDefault="shift"
       :pagination="true"
@@ -49,6 +51,7 @@ export default {
     return {
       columnDefs: [],
       rowData: [],
+      rowClass: "white-row",
       defaultColDef: {
         flex: 1,
         minWidth: 110,
@@ -59,27 +62,38 @@ export default {
   },
   beforeMount() {},
   created() {
-    User.insertOrUpdate({
-      data: [
-        {
-          type: "PUBLISHER",
-          id: 5,
-          first_name: "Andarus",
-        },
-        {
-          type: "ADMIN",
-          id: 66,
-          first_name: "Valerius",
-        },
-        {
-          type: "SUPER_ADMIN",
-          id: 67,
-          first_name: "Herius",
-        },
-      ],
-    });
+    (this.rowClass = "white-row"),
+      User.insertOrUpdate({
+        data: [
+          {
+            type: "PUBLISHER",
+            id: 5,
+            first_name: "Andarus",
+          },
+          {
+            type: "ADMIN",
+            id: 66,
+            first_name: "Valerius",
+          },
+          {
+            type: "SUPER_ADMIN",
+            id: 67,
+            first_name: "Herius",
+          },
+        ],
+      });
+    this.grayClass();
   },
-
+  methods: {
+    grayClass: function (params) {
+      if (params.node.lastChild) {
+        return "red-effect";
+      }
+      if (params.node.rowIndex % 2 === 0) {
+        return "my-shaded-effect";
+      }
+    },
+  },
   mounted() {
     User.find(67).deleteServer();
     for (var i = 0; i < Object.keys(this.users[0]).length; i++) {
@@ -125,5 +139,14 @@ h2 {
 .ag-theme-alpine .ag-header {
   background: rgb(104, 104, 116);
   color: white !important;
+}
+.my-shaded-effect {
+  background: rgb(104, 104, 116) !important;
+}
+.white-row {
+  background-color: red !important;
+}
+.red-effect {
+  background-color: rgb(59, 202, 83) !important;
 }
 </style>
